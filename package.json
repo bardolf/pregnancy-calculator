@@ -1,8 +1,8 @@
 {
   "name": "pregnancy-calculator",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "private": true,
-  "homepage": "https://jstastny.github.io/pregnancy-calculator",
+  "homepage": "https://bardolf.github.io/pregnancy-calculator",
   "dependencies": {
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",

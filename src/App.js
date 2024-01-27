@@ -9,6 +9,7 @@ function App() {
   const [crlValue, setCrlValue] = useState("");
   const [selectedDateEt, setSelectedDateEt] = useState("");
   const [etValue, setEtValue] = useState("");
+  const [selectedDateLm, setSelectedDateLm] = useState("");
 
   const handleDateTpChange = (event) => {
     setSelectedDateTp(event.target.value);
@@ -28,6 +29,10 @@ function App() {
 
   const handleEtChange = (event) => {
     setEtValue(event.target.value);
+  };
+
+  const handleDateLmChange = (event) => {
+    setSelectedDateLm(event.target.value);
   };
 
   const calculateConceptionDateTp = () => {
@@ -98,10 +103,18 @@ function App() {
     return "-";
   };
 
+  const calculateBirthDateLm = () => {
+    if (selectedDateLm) {
+      const birdthDate = moment(selectedDateLm).add(283, "days");
+      return birdthDate.toDate().toLocaleDateString("cs-CZ");
+    }
+    return "-";
+  };
+
   return (
     <div className="bg-custom-gray min-h-screen flex flex-col items-center font-sans">
       <h1 className="text-3xl mb-2 text-blue-600">Těhotenská kalkulačka</h1>
-      <h2 className="text-xl mb-0 font-bold">Dle Termínu porodu</h2>
+      <h2 className="text-xl mb-0 font-bold">Dle termínu porodu</h2>
       <p className="text-sm">Termín porodu</p>
       <input
         type="date"
@@ -164,6 +177,20 @@ function App() {
       <p className="text-2xl mb-0 font-bold">{calculateWeekAndDayEt()}</p>
       <p className="text-base mb-0 ">Datum porodu</p>
       <p className="text-base mb-0 font-bold">{calculateConceptionDateEt()}</p>
+
+      <hr className="w-64 h-1 bg-gray-300 border-0 rounded md:my-1 dark:bg-gray-700" />
+
+      <h2 className="text-xl mt-1 mb-0 font-bold">Dle poslední menstruace</h2>
+      <p className="text-sm">1. den poslední menstruace</p>
+      <input
+        type="date"
+        className="w-48 p-2 border rounded-md mb-2 text-center"
+        value={selectedDateLm}
+        onChange={handleDateLmChange}
+        placeholder="1. den poslední menstruace"
+      />
+      <p className="text-base mb-0 ">Datum porodu</p>
+      <p className="text-base mb-0 font-bold">{calculateBirthDateLm()}</p>
     </div>
   );
 }
